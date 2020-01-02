@@ -21,6 +21,7 @@ class AnalyzeImageWorker
   private
 
   def AnalyzeImageWorker.run_job(type, url)
+    puts "run_job: #{type} -> #{url}"
     case SmartAndFastAssets.execution
     when :inline
       AnalyzeImageWorker.new.perform(type, url)

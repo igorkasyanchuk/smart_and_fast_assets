@@ -22,14 +22,18 @@ class SmartAsset < ApplicationRecord
   end
 
   def SmartAsset.create_from_url(url)
+    puts "SmartAsset.create_from_url: #{url}"
     asset               = SmartAsset.new
     asset.url           = url
     size                = FastImage.size(url)
+    return nil unless size
     asset.width         = size[0]
     asset.height        = size[1]
     asset.save
   rescue Exception => ex
-    Rails.logger.error(puts(ex.message))
+    Rails.logger.error(ex.message)
+    puts(ex.message)
+    puts ex.backtrace.take(10).join("\n")
     nil
   end
 

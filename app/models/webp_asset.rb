@@ -26,6 +26,8 @@ class WebpAsset < ApplicationRecord
   end
 
   def WebpAsset.create_from_url(url)
+    puts "WebpAsset.create_from_url: #{url}"
+
     tf      = SmartAssetUtils.create_tempfile_from(url)
     wp_path = tf.path + ".webp"
 
