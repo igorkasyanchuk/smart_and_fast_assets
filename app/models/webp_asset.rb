@@ -22,7 +22,7 @@ class WebpAsset < ApplicationRecord
     return if url.blank?
 
     final_url = SmartAssetUtils.final_url(url)
-    sa        = Rails.cache.fetch(url) { WebpAsset.find_by(url: final_url) }
+    sa        = WebpAsset.find_by(url: final_url)
     return sa if sa
 
     AnalyzeImageWorker.create_webp(final_url)
