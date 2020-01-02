@@ -9,8 +9,8 @@ class SmartAssetUtils
       nil
     else
       tmp = "#{Rails.application.routes.default_url_options[:host]}#{url}"
-      tmp = "http://127.0.0.1:3000#{url}"
-      #tmp = "http://#{tmp}" unless tmp =~ /^http/
+      tmp = "http://127.0.0.1:3000#{url}" if Rails.env.development?
+      tmp = "http://#{tmp}" unless tmp =~ /^http/
       tmp
     end
   end

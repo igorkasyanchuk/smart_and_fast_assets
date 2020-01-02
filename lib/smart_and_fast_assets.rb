@@ -1,5 +1,6 @@
 require "smart_and_fast_assets/engine"
 require "fastimage"
+require "webp-ffi"
 
 module SmartAndFastAssets
 
