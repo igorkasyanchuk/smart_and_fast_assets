@@ -1,5 +1,6 @@
 require "smart_and_fast_assets/engine"
 require "fastimage"
+require "sidekiq"
 require "webp-ffi"
 
 module SmartAndFastAssets
@@ -18,6 +19,8 @@ module SmartAndFastAssets
   end
 
 end
+
+require_relative "../app/workers/analyze_image_worker.rb"
 
 # SmartAndFastAssets.setup do |config|
 #   config.storage   = :file
