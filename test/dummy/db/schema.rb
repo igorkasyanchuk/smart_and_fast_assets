@@ -45,9 +45,6 @@ ActiveRecord::Schema.define(version: 2019_12_31_150449) do
     t.string "url"
     t.integer "width"
     t.integer "height"
-    t.integer "original_size"
-    t.integer "new_size"
-    t.string "image"
     t.datetime "created_at"
     t.index ["url"], name: "index_smart_assets_on_url"
   end
@@ -56,6 +53,9 @@ ActiveRecord::Schema.define(version: 2019_12_31_150449) do
     t.string "url"
     t.integer "width"
     t.integer "height"
+    t.integer "original_size"
+    t.integer "new_size"
+    t.string "image"
     t.datetime "created_at"
     t.index ["url"], name: "index_webp_assets_on_url"
   end

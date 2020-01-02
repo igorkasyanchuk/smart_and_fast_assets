@@ -2,14 +2,11 @@
 #
 # Table name: smart_assets
 #
-#  id            :integer          not null, primary key
-#  url           :string
-#  width         :integer
-#  height        :integer
-#  original_size :integer
-#  new_size      :integer
-#  image         :string
-#  created_at    :datetime
+#  id         :integer          not null, primary key
+#  url        :string
+#  width      :integer
+#  height     :integer
+#  created_at :datetime
 #
 
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

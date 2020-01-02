@@ -2,14 +2,11 @@
 #
 # Table name: smart_assets
 #
-#  id            :integer          not null, primary key
-#  url           :string
-#  width         :integer
-#  height        :integer
-#  original_size :integer
-#  new_size      :integer
-#  image         :string
-#  created_at    :datetime
+#  id         :integer          not null, primary key
+#  url        :string
+#  width      :integer
+#  height     :integer
+#  created_at :datetime
 #
 
 class SmartAsset < ApplicationRecord
@@ -17,18 +14,11 @@ class SmartAsset < ApplicationRecord
   def SmartAsset.[](url)
     return if url.blank?
 
-    url = SmartAssetUtils.final_url(url)
-    sa  = SmartAsset.find_by(url: url)
+    final_url = SmartAssetUtils.final_url(url)
+    sa        = SmartAsset.find_by(url: final_url)
     return sa if sa
 
-    case SmartAndFastAssets.execution
-    when :inline
-      AnalyzeImageWorker.new.perform(:smart, url)
-    when :background
-      AnalyzeImageWorker.perform_async(:smart, url)
-    else
-      raise 'incorrect value'
-    end
+    AnalyzeImageWorker.capture_asset_details(final_url)
   end
 
   def SmartAsset.create_from_url(url)

@@ -2,11 +2,14 @@
 #
 # Table name: webp_assets
 #
-#  id         :integer          not null, primary key
-#  url        :string
-#  width      :integer
-#  height     :integer
-#  created_at :datetime
+#  id            :integer          not null, primary key
+#  url           :string
+#  width         :integer
+#  height        :integer
+#  original_size :integer
+#  new_size      :integer
+#  image         :string
+#  created_at    :datetime
 #
 
 class WebpAsset < ApplicationRecord
@@ -15,18 +18,11 @@ class WebpAsset < ApplicationRecord
   def WebpAsset.[](url)
     return if url.blank?
 
-    url = SmartAssetUtils.final_url(url)
-    sa  = WebpAsset.find_by(url: url)
+    final_url = SmartAssetUtils.final_url(url)
+    sa        = WebpAsset.find_by(url: final_url)
     return sa if sa
 
-    case SmartAndFastAssets.execution
-    when :inline
-      AnalyzeImageWorker.new.perform(:webp, url)
-    when :background
-      AnalyzeImageWorker.perform_async(:webp, url)
-    else
-      raise 'incorrect value'
-    end
+    AnalyzeImageWorker.create_webp(final_url)
   end
 
   def WebpAsset.create_from_url(url)
@@ -38,13 +34,13 @@ class WebpAsset < ApplicationRecord
     original_size = File.size(tf.path)
     new_size      = File.size(wp_path)
 
-    puts "========================================================="
-    puts "Original: #{original_size}, NEW: #{new_size}, Quality: #{SmartAndFastAssets.quality}, Optimization: #{ 100 - (new_size / original_size.to_f).round(2) }%"
-    puts "========================================================="
+    puts "================================================================="
+    puts "Original: #{original_size}, NEW: #{new_size}, Quality: #{SmartAndFastAssets.quality}%, Optimization: #{ 100 - 100 * (new_size / original_size.to_f).round(2) }%"
+    puts "================================================================="
 
     asset               = WebpAsset.new
     asset.url           = url
-    asset.image         = File.open(wp_path)
+    asset.image         = Pathname.new(wp_path).open
     size                = FastImage.size(tf.path)
     asset.width         = size[0]
     asset.height        = size[1]
@@ -54,7 +50,7 @@ class WebpAsset < ApplicationRecord
   rescue Exception => ex
     Rails.logger.error ex.message
     puts ex.message
-    puts ex.stacktrace.join("\n")
+    puts ex.backtrace.take(10).join("\n")
     nil
   ensure
     tf&.unlink

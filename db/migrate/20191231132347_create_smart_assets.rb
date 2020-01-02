@@ -4,9 +4,6 @@ class CreateSmartAssets < ActiveRecord::Migration[6.0]
       t.string :url, index: true
       t.integer :width
       t.integer :height
-      t.integer :original_size
-      t.integer :new_size
-      t.string :image
       t.datetime :created_at
     end
 
@@ -14,6 +11,9 @@ class CreateSmartAssets < ActiveRecord::Migration[6.0]
       t.string :url, index: true
       t.integer :width
       t.integer :height
+      t.integer :original_size
+      t.integer :new_size
+      t.string :image
       t.datetime :created_at
     end
   end
