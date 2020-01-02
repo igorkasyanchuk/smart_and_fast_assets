@@ -1,4 +1,3 @@
-require "smart_and_fast_assets/engine"
 require "fastimage"
 require "sidekiq"
 require "webp-ffi"
@@ -25,3 +24,10 @@ end
 #   config.quality   = 85
 #   config.execution = :background
 # end
+
+require "active_record"
+require "active_model"
+require_relative "../app/lib/smart_asset_utils.rb"
+require_relative "../app/helpers/webp_image_helper.rb"
+require_relative "../app/workers/analyze_image_worker.rb"
+require "smart_and_fast_assets/engine"
