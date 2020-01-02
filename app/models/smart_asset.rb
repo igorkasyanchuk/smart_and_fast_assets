@@ -17,7 +17,7 @@ class SmartAsset < ApplicationRecord
     return if url.blank?
 
     final_url = SmartAssetUtils.final_url(url)
-    sa        = SmartAsset.find_by(url: final_url)
+    sa        = Rails.cache.fetch(url) { SmartAsset.find_by(url: final_url) }
     return sa if sa
 
     AnalyzeImageWorker.capture_asset_details(final_url)
