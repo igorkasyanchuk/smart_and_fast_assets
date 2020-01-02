@@ -12,6 +12,8 @@
 #  created_at    :datetime
 #
 
+require_relative '../workers/analyze_image_worker.rb'
+
 class WebpAsset < ApplicationRecord
   mount_uploader :image, SmartPhotoUploader
 

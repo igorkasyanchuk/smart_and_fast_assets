@@ -9,6 +9,8 @@
 #  created_at :datetime
 #
 
+require_relative '../workers/analyze_image_worker.rb'
+
 class SmartAsset < ApplicationRecord
 
   def SmartAsset.[](url)
