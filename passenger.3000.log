@@ -1,0 +1,58 @@
+[ N 2020-01-02 07:32:57.0555 5786/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-01-02 07:32:57.0727 5789/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-01-02 07:32:57.0728 5789/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ W 2020-01-02 07:32:57.0919 5789/T1 age/Cor/CoreMain.cpp:1007 ]: WARNING: potential privilege escalation vulnerability detected. Phusion Passenger is running as root, and part(s) of the Passenger root path (/usr/local/rvm/gems/ruby-2.5.5/gems/passenger-6.0.4) can be changed by non-root user(s):
+
+ - /usr/local/rvm/gems/ruby-2.5.5/gems/passenger-6.0.4 is not secure: it can be modified by group rvm
+ - /usr/local/rvm/gems/ruby-2.5.5/gems is not secure: it can be modified by group rvm
+ - /usr/local/rvm/gems/ruby-2.5.5 is not secure: it can be modified by group rvm
+ - /usr/local/rvm/gems is not secure: it can be modified by group rvm
+ - /usr/local/rvm is not secure: it can be modified by group rvm
+
+Please either fix up the permissions for the insecure paths, or install Passenger in a different location that can only be modified by root.
+[ N 2020-01-02 07:32:57.0919 5789/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 5789
+2020/01/02 07:32:59 [error] 5800#0: *4 "/root/projects/smart_and_fast_assets/public/index.html" is not found (2: No such file or directory), client: 127.0.0.1, server: _, request: "HEAD / HTTP/1.1", host: "0.0.0.0"
+[ N 2020-01-02 07:33:04.3763 5789/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+
+[ N 2020-01-02 07:33:11.0541 5789/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-01-02 07:33:11.0541 5789/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-01-02 07:33:11.0543 5789/Tb Ser/Server.h:902 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-01-02 07:33:11.0543 5789/Td Ser/Server.h:902 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-01-02 07:33:11.0543 5789/Te Ser/Server.h:902 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-01-02 07:33:11.0543 5789/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-01-02 07:33:11.0543 5789/Td Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-01-02 07:33:11.0544 5789/Tb Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-01-02 07:33:11.0544 5789/T8 Ser/Server.h:902 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-01-02 07:33:11.0544 5789/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-01-02 07:33:11.0545 5789/Th Ser/Server.h:902 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-01-02 07:33:11.0546 5789/Th Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-01-02 07:33:11.3883 5789/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-01-02 07:33:15.5377 5847/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-01-02 07:33:15.5522 5850/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-01-02 07:33:15.5523 5850/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ W 2020-01-02 07:33:15.5610 5850/T1 age/Cor/CoreMain.cpp:1007 ]: WARNING: potential privilege escalation vulnerability detected. Phusion Passenger is running as root, and part(s) of the Passenger root path (/usr/local/rvm/gems/ruby-2.5.5/gems/passenger-6.0.4) can be changed by non-root user(s):
+
+ - /usr/local/rvm/gems/ruby-2.5.5/gems/passenger-6.0.4 is not secure: it can be modified by group rvm
+ - /usr/local/rvm/gems/ruby-2.5.5/gems is not secure: it can be modified by group rvm
+ - /usr/local/rvm/gems/ruby-2.5.5 is not secure: it can be modified by group rvm
+ - /usr/local/rvm/gems is not secure: it can be modified by group rvm
+ - /usr/local/rvm is not secure: it can be modified by group rvm
+
+Please either fix up the permissions for the insecure paths, or install Passenger in a different location that can only be modified by root.
+[ N 2020-01-02 07:33:15.5610 5850/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 5850
+2020/01/02 07:33:17 [error] 5862#0: *4 "/root/projects/smart_and_fast_assets/public/index.html" is not found (2: No such file or directory), client: 127.0.0.1, server: _, request: "HEAD / HTTP/1.1", host: "0.0.0.0"
+[ N 2020-01-02 07:33:17.8249 5850/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+
+[ N 2020-01-02 07:33:24.7161 5850/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-01-02 07:33:24.7162 5850/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-01-02 07:33:24.7163 5850/Te Ser/Server.h:902 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-01-02 07:33:24.7164 5850/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-01-02 07:33:24.7164 5850/Tb Ser/Server.h:902 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-01-02 07:33:24.7164 5850/T8 Ser/Server.h:902 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-01-02 07:33:24.7164 5850/Tc Ser/Server.h:902 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-01-02 07:33:24.7164 5850/Tb Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-01-02 07:33:24.7164 5850/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-01-02 07:33:24.7164 5850/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-01-02 07:33:24.7166 5850/Tg Ser/Server.h:902 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-01-02 07:33:24.7166 5850/Tg Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-01-02 07:33:24.9531 5850/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
