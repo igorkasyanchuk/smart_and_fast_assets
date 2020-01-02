@@ -5,8 +5,6 @@ module SmartAndFastAssets
       ActiveSupport.on_load :action_view do
         ActionView::Base.send :include, WebpImageHelper
       end
-
-      require_relative '../../app/workers/analyze_image_worker.rb'
     end
 
   end

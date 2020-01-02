@@ -20,8 +20,6 @@ module SmartAndFastAssets
 
 end
 
-require_relative "../app/workers/analyze_image_worker.rb"
-
 # SmartAndFastAssets.setup do |config|
 #   config.storage   = :file
 #   config.quality   = 85
