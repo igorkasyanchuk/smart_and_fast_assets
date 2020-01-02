@@ -5,7 +5,7 @@ module WebpImageHelper
     ai        = url.blank? ? nil : WebpAsset[url]
     tag.picture do
       if ai.is_a?(WebpAsset)
-        concat tag.source srcset: ai.image.url, type: WEBP
+        concat tag.source "data-srcset": ai.image.url, type: WEBP, class: 'lazyload'
       end
       concat image_tag(url, **options)
     end

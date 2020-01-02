@@ -44,7 +44,7 @@ class WebpAsset < ApplicationRecord
 
     asset               = WebpAsset.new
     asset.url           = url
-    asset.image         = Pathname.new(wp_path).open
+    asset.image         = File.open(wp_path)
     size                = FastImage.size(tf.path)
     asset.width         = size[0]
     asset.height        = size[1]
