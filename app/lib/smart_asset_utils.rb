@@ -22,7 +22,7 @@ class SmartAssetUtils
     puts "create_tempfile_from: #{uri}"
     Net::HTTP.start(uri.host, uri.port, use_ssl: !!(url =~ /^https/)) do |http|
       resp = http.get(uri.path)
-      resp = http.get(resp.header['location']) if resp.code == "301"
+      resp = http.get(URI.parse(resp.header['location']).path) if resp.code == "301"
       file = Tempfile.new(File.basename(url))
       file.binmode
       file.write(resp.body)
