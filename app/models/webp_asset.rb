@@ -12,6 +12,7 @@
 #  created_at    :datetime
 #
 
+require 'open-uri'
 require_relative '../workers/analyze_image_worker.rb'
 
 class WebpAsset < ApplicationRecord
@@ -30,7 +31,7 @@ class WebpAsset < ApplicationRecord
   def WebpAsset.create_from_url(url)
     puts "WebpAsset.create_from_url: #{url}"
 
-    tf      = SmartAssetUtils.create_tempfile_from(url)
+    tf      = open(url)
     wp_path = tf.path + ".webp"
 
     ::WebP.encode(tf.path, wp_path, { quality: SmartAndFastAssets.quality })
