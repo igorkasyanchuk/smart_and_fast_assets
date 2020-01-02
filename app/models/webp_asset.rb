@@ -31,7 +31,11 @@ class WebpAsset < ApplicationRecord
   def WebpAsset.create_from_url(url)
     puts "WebpAsset.create_from_url: #{url}"
 
-    tf      = open(url)
+    tf = Tempfile.new
+    tf.binmode
+    tf.write(open(url).read)
+    tf.flush
+
     wp_path = tf.path + ".webp"
 
     ::WebP.encode(tf.path, wp_path, { quality: SmartAndFastAssets.quality })
