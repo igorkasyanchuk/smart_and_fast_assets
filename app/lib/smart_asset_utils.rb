@@ -11,14 +11,14 @@ class SmartAssetUtils
       nil
     else
       tmp = "#{Rails.application.routes.default_url_options[:host]}#{url}"
-      tmp = "http://127.0.0.1:3000#{url}"# if Rails.env.development?
+      tmp = "http://127.0.0.1:3000#{url}" if Rails.env.development?
       tmp = "http://#{tmp}" unless tmp =~ /^http/
       tmp
     end
   end
 
   def SmartAssetUtils.create_tempfile_from(url)
-    uri = URI.parse(url.downcase)
+    uri = URI.parse(url)
     puts "create_tempfile_from: #{uri}"
     Net::HTTP.start(uri.host, uri.port, use_ssl: !!(url =~ /^https/)) do |http|
       resp = http.get(uri.path)
