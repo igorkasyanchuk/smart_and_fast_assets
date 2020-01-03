@@ -33,7 +33,7 @@ class WebpAsset < ApplicationRecord
 
     tf = Tempfile.new
     tf.binmode
-    tf.write(open(url).read)
+    tf.write(open(url, allow_redirections: :all).read)
     tf.flush
 
     wp_path = tf.path + ".webp"
@@ -59,7 +59,7 @@ class WebpAsset < ApplicationRecord
   rescue Exception => ex
     Rails.logger.error ex.message
     puts ex.message
-    puts ex.backtrace.take(10).join("\n")
+    puts ex.backtrace.take(6).join("\n")
     nil
   ensure
     tf&.unlink

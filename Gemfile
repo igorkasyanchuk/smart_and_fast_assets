@@ -19,3 +19,4 @@ gem 'carrierwave'
 gem 'sidekiq', '5.2.7'
 gem 'annotate'
 gem "webp-ffi"
+gem 'open_uri_redirections'

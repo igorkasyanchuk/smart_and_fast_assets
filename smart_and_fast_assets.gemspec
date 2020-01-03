@@ -24,6 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "mini_magick"
   spec.add_dependency "carrierwave"
   spec.add_dependency "webp-ffi"
+  spec.add_dependency "open_uri_redirections"
 
   spec.add_development_dependency "sqlite3"
 end

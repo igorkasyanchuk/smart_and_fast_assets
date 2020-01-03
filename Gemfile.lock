@@ -6,6 +6,7 @@ PATH
       fastimage
       image_processing
       mini_magick
+      open_uri_redirections
       pry
       rails (>= 5.0.0)
       sidekiq
@@ -115,6 +116,7 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.7)
       mini_portile2 (~> 2.4.0)
+    open_uri_redirections (0.2.1)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -185,6 +187,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   carrierwave
+  open_uri_redirections
   pry
   sidekiq (= 5.2.7)
   smart_and_fast_assets!

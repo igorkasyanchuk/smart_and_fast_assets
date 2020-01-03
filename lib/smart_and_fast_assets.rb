@@ -1,6 +1,7 @@
 require "fastimage"
 require "sidekiq"
 require "webp-ffi"
+require "open_uri_redirections"
 
 module SmartAndFastAssets
 
@@ -13,6 +14,9 @@ module SmartAndFastAssets
   mattr_accessor :execution
   @@execution = :background
 
+  mattr_accessor :debug
+  @@debug = false
+
   def self.setup
     yield(self)
   end
@@ -23,6 +27,7 @@ end
 #   config.storage   = :file
 #   config.quality   = 85
 #   config.execution = :background
+#   config.debug     = false
 # end
 
 require "active_record"
