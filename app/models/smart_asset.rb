@@ -9,23 +9,25 @@
 #  created_at :datetime
 #
 
+require_relative '../workers/smart_asset_worker.rb'
+
 class SmartAsset < ApplicationRecord
   extend SmartAssetUtils
 
   def SmartAsset.[](url)
     return if url.blank?
 
-    url = final_url(url)
-    sa  = SmartAsset.find_by(url: url)
-    return sa if sa
+    e = SmartAsset.find_by(url: url)
+    return e if e
 
-    CreateWebpWorker.run_job(url)
+    GeneralWorker.run_job(SmartAssetWorker, url)
   end
 
   def SmartAsset.create_from_url(url)
     SmartAndFastAssets.log "SmartAsset.create_from_url: #{url}"
-    size                = FastImage.size(url)
-    return nil unless size
+    download_url        = final_url(url)
+    size                = FastImage.size(download_url)
+    raise "Can't detect image size" unless size
 
     asset               = SmartAsset.new
     asset.url           = url

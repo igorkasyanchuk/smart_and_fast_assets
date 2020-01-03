@@ -28,10 +28,9 @@ module SmartAndFastAssets
   end
 
   def SmartAndFastAssets.log(message)
-    return unless SmartAndFastAssets.debug
-
-    #puts(message)
-    Rails.logger.debug(message)
+    if SmartAndFastAssets.debug
+      Rails.logger.debug(message)
+    end
   end
 
 end
@@ -40,7 +39,7 @@ require "active_record"
 require "active_model"
 require_relative "../app/lib/smart_asset_utils.rb"
 require_relative "../app/helpers/webp_image_helper.rb"
-require_relative "../app/workers/smart_assets_worker.rb"
+require_relative "../app/workers/general_worker.rb"
 require_relative "../app/workers/create_webp_worker.rb"
-require_relative "../app/workers/analyze_image_worker.rb"
+require_relative "../app/workers/smart_asset_worker.rb"
 require "smart_and_fast_assets/engine"

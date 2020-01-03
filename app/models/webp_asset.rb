@@ -12,6 +12,8 @@
 #  created_at    :datetime
 #
 
+require_relative '../workers/create_webp_worker.rb'
+
 class WebpAsset < ApplicationRecord
   extend SmartAssetUtils
 
@@ -20,19 +22,19 @@ class WebpAsset < ApplicationRecord
   def WebpAsset.[](url)
     return if url.blank?
 
-    url = final_url(url)
-    sa  = WebpAsset.find_by(url: url)&.attributes()
-    return sa if sa
+    e = WebpAsset.find_by(url: url)
+    return e if e
 
-    CreateWebpWorker.run_job(url)
+    GeneralWorker.run_job(CreateWebpWorker, url)
   end
 
   def WebpAsset.create_from_url(url)
     SmartAndFastAssets.log "WebpAsset.create_from_url: #{url}"
+    download_url = final_url(url)
 
     tf = Tempfile.new
     tf.binmode
-    tf.write(open(url, allow_redirections: :all).read)
+    tf.write(open(download_url, allow_redirections: :all).read)
     tf.flush
 
     wp_path = tf.path + ".webp"
@@ -47,6 +49,7 @@ class WebpAsset < ApplicationRecord
     SmartAndFastAssets.log "================================================================="
 
     size                = FastImage.size(tf.path)
+    raise "Can't detect image size" unless size
 
     asset               = WebpAsset.new
     asset.url           = url
