@@ -12,24 +12,23 @@
 #  created_at    :datetime
 #
 
-require 'open-uri'
-require_relative '../workers/analyze_image_worker.rb'
-
 class WebpAsset < ApplicationRecord
+  extend SmartAssetUtils
+
   mount_uploader :image, SmartPhotoUploader
 
   def WebpAsset.[](url)
     return if url.blank?
 
-    final_url = SmartAssetUtils.final_url(url)
-    sa        = WebpAsset.find_by(url: final_url)
+    url = final_url(url)
+    sa  = WebpAsset.find_by(url: url)&.attributes()
     return sa if sa
 
-    AnalyzeImageWorker.create_webp(final_url)
+    CreateWebpWorker.run_job(url)
   end
 
   def WebpAsset.create_from_url(url)
-    puts "WebpAsset.create_from_url: #{url}"
+    SmartAndFastAssets.log "WebpAsset.create_from_url: #{url}"
 
     tf = Tempfile.new
     tf.binmode
@@ -43,23 +42,23 @@ class WebpAsset < ApplicationRecord
     original_size = File.size(tf.path)
     new_size      = File.size(wp_path)
 
-    puts "================================================================="
-    puts "Original: #{original_size}, NEW: #{new_size}, Quality: #{SmartAndFastAssets.quality}%, Optimization: #{ 100 - 100 * (new_size / original_size.to_f).round(2) }%"
-    puts "================================================================="
+    SmartAndFastAssets.log "================================================================="
+    SmartAndFastAssets.log "Original: #{original_size}, NEW: #{new_size}, Quality: #{SmartAndFastAssets.quality}%, Optimization: #{ 100 - 100 * (new_size / original_size.to_f).round(2) }%"
+    SmartAndFastAssets.log "================================================================="
+
+    size                = FastImage.size(tf.path)
 
     asset               = WebpAsset.new
     asset.url           = url
     asset.image         = File.open(wp_path)
-    size                = FastImage.size(tf.path)
-    asset.width         = size[0]
-    asset.height        = size[1]
     asset.original_size = original_size
     asset.new_size      = new_size
+    asset.width         = size[0]
+    asset.height        = size[1]
     asset.save
   rescue Exception => ex
-    Rails.logger.error ex.message
-    puts ex.message
-    puts ex.backtrace.take(6).join("\n")
+    SmartAndFastAssets.log ex.message
+    SmartAndFastAssets.log ex.backtrace.take(6).join("\n")
     nil
   ensure
     tf&.unlink

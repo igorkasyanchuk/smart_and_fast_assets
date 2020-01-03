@@ -1,11 +1,9 @@
 module WebpImageHelper
-  WEBP = "image/webp".freeze
-
   def webp_picture_tag(url, **options)
     ai        = url.blank? ? nil : WebpAsset[url]
     tag.picture do
       if ai.is_a?(WebpAsset)
-        concat tag.source "data-srcset": ai.image.url, type: WEBP, class: 'lazyload'
+        concat tag.source "data-srcset": ai.image.url, type: "image/webp", class: 'lazyload'
       end
       concat image_tag(url, **options)
     end
@@ -20,5 +18,4 @@ module WebpImageHelper
     end
     image_tag url, **options
   end
-
 end
