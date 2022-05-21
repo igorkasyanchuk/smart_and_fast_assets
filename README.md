@@ -37,3 +37,8 @@ tar -xzvf libwebp-0.4.3.tar.gz
 cd libwebp-1.0.3 && ./configure --prefix=$HOME/libwebp && make && make install && cd ..
 
 apt-get install webp and libwebp-dev
+
+## More
+
+[<img src="https://github.com/igorkasyanchuk/rails_time_travel/blob/main/docs/more_gems.png?raw=true"
+/>](https://www.railsjazz.com/?utm_source=github&utm_medium=bottom&utm_campaign=smart_and_fast_assets)
