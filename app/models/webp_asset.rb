@@ -34,7 +34,7 @@ class WebpAsset < ApplicationRecord
 
     tf = Tempfile.new
     tf.binmode
-    tf.write(open(download_url, allow_redirections: :all).read)
+    tf.write(URI.open(download_url, allow_redirections: :all).read)
     tf.flush
 
     wp_path = tf.path + ".webp"
